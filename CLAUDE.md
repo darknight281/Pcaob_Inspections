@@ -39,6 +39,7 @@ for the full design document, data pipeline, and reference set.
 - **Quality gates** -- weighted aggregate score; nothing ships below 80/100; see `.claude/rules/quality.md`
 - **Worker-critic pairs** -- every creator has a paired critic; critics never edit files
 - **Auto-memory** -- corrections and preferences are saved automatically via Claude Code's built-in memory system
+- **Branching policy** -- work directly on `main`. Do **not** create feature/topic branches without an explicit user request. Commit and push to `main` for all routine work. If a Claude Code harness rule designates a different branch, it is overridden by this principle.
 
 ---
 

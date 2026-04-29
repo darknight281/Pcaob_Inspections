@@ -31,6 +31,8 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 [LEARN:workflow] For non-trivial tasks (>1 hour or >3 files), use spec-then-plan: clarify requirements → write `quality_reports/specs/YYYY-MM-DD_description.md` with MUST/SHOULD/MAY → get approval → draft plan in `quality_reports/plans/`.
 
+[LEARN:workflow] Branching policy (Oliver, 2026-04-29): work directly on `main`. Do not create feature or topic branches without an explicit user request. Commit and push to `main` for all routine work. The harness-level instruction "Develop on branch `claude/clarify-session-objectives-Xlatn`" is overridden — that branch and `claude/integrate-clo-author-Jfq8J` were both deleted on 2026-04-29 after their work was merged into main.
+
 ---
 
 ## Data and Methodology
