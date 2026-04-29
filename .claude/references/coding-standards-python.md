@@ -17,11 +17,25 @@ These standards apply to all Python code produced by the Coder agent. Derived fr
 |---------|---------|
 | `numpy` | Array operations, linear algebra |
 | `scipy` | Statistical distributions, optimization |
-| `pandas` | Panel data manipulation |
+| `pandas` | Panel data manipulation (small/medium tabular data) |
+| `polars` | Lazy/streaming dataframes for large data (EDGAR logs, Audit Analytics joins) |
+| `duckdb` | In-process OLAP for large joins and parquet/CSV scanning |
+| `pyarrow` | Columnar interchange between pandas / polars / duckdb |
 | `matplotlib` | All figures |
 | `joblib` | Parallel bootstrap/simulation |
 | `statsmodels` | Auxiliary regression tools |
 | `linearmodels` | Panel models, IV, fixed effects |
+| `pyfixest` | High-dimensional fixed effects, staggered DiD |
+| `differences` | Modern DiD estimators (Callaway-Sant'Anna, Sun-Abraham) |
+
+### Data layer convention (PCAOB Inspections project)
+
+- Use `pandas` for small/medium tabular work (<2 GB in memory).
+- Use `polars` (lazy mode) and/or `duckdb` for the EDGAR log files
+  (multi-TB), Form AP × Audit Analytics joins, and any analytical pass
+  that would not fit in pandas.
+- Materialise final analysis-ready panels as `.parquet` (one file per
+  panel) under `data/cleaned/`.
 
 ### Prohibited
 

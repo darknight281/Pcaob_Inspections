@@ -25,6 +25,20 @@
 __pycache__/
 *.pyc
 *.pyo
+.venv/
+.env
+*.egg-info/
+
+# Data (raw/cleaned are populated locally; parquet outputs not tracked by default)
+data/raw/*
+!data/raw/.gitkeep
+data/cleaned/*.parquet
+data/cleaned/*.csv.gz
+
+# EDGAR / large-file caches
+*.tar.gz
+*.zip
+data/cache/
 
 # R
 .Rproj.user/
