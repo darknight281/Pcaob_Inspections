@@ -3,6 +3,12 @@
 Synthesised from `PCAOB_Inspection_Research_Discussion_Notes_v1.md` §3.
 Update the **Status** column as access is confirmed or blocked.
 
+**Schema references (added 2026-04-29):**
+- `wrds_audit_analytics_schema.md` — WRDS Audit Analytics PostgreSQL inventory (14 modules, 9 detailed)
+- `wrds_revelio_labs_schema.md` — WRDS Revelio Labs schema (skeleton, multiple `*unverified*` flags pending in-WRDS confirmation)
+- `pcaob_data_structure.md` — PCAOB inspection-report PDF taxonomy (Part I.A/I.B/I.C/II), four format eras, Form AP CSV schema, storage layout
+- `replication_packages.md` — Idea C replication-package inventory (**zero public packages located** — green-field infrastructure)
+
 ## Primary sources
 
 | # | Dataset | Provider | Unit | Cost | Status |
@@ -40,11 +46,36 @@ LinkedIn-derived job-tenure city tags.
 
 ## Open infrastructure questions
 
-1. **EDGAR storage**: ~2 TB raw; on-prem or cloud bucket for the
-   full log archive? Recommended: object store + duckdb federated
-   queries.
-2. **Revelio Labs delivery format**: WRDS-mounted cube vs. parquet
-   snapshots? Confirms refresh cadence (research-notes §8 Q2).
-3. **Compute**: BERTopic / sentence-transformer embeddings of
+*Updated 2026-04-29 — Oliver:*
+
+1. **EDGAR storage — RESOLVED.** Cleaned panels persisted as parquet
+   under `data/cleaned/`; raw ~2 TB log archive processed via polars
+   + duckdb (lazy / streaming) without full materialisation. Object
+   store unnecessary at this stage.
+2. **Revelio Labs delivery format — RESOLVED.** WRDS-mounted (Postgres
+   schema). Schema documented in `wrds_revelio_labs_schema.md`.
+   Refresh cadence per WRDS (vs Revelio direct API): pending
+   in-WRDS confirmation — see open questions §8 of that file.
+3. **Compute** for BERTopic / sentence-transformer embeddings of
    ~20 years of PCAOB Part I.A narratives — local GPU vs. Monash
-   HPC?
+   HPC? *Pending — Idea E (downstream paper).*
+
+## Idea C — green-field infrastructure note
+
+Per `replication_packages.md`, no public replication package was
+located across 11 candidate papers in the EDGAR co-search and PCAOB
+inspection event-study clusters. Idea C must build:
+
+- PCAOB inspection-report PDF parser (4 era-specific templates per
+  `pcaob_data_structure.md` §1.3)
+- Form AP × inspection-report join (engagement-partner × issuer ×
+  inspection cycle)
+- Exposure-group construction (directly exposed / indirectly exposed
+  via same firm / industry peer / control)
+
+The Lee-Ma-Wang (2015, *JFE*) co-search methodology is the closest
+precedent to fork — direct author outreach (Charles Lee, Stanford GSB)
+recommended for the SAS scripts. The Iliev-Kalodimos-Lowry (2021,
+*RFS*) package may be in the RFS Data Editors portal (post-2019
+deposit mandate) and is the highest-priority retrieval target for
+EDGAR log ingestion infrastructure.

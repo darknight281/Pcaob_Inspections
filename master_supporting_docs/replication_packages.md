@@ -34,5 +34,22 @@
 
 ## Top-3 Prioritisation Memo
 
-*To be drafted after searches complete.*
+**Headline finding:** Across 11 target papers and 6 search calls, **no replication package was located via public deposits** (openICPSR, Harvard Dataverse, AEA Repo, GitHub, or author websites surfaced in search). This is consistent with the publication windows and journal policies of the target set: (i) most Cluster 2 papers use proprietary PCAOB inspection data that cannot be publicly redistributed; (ii) JAR/JFE/CAR/RAST/TAR did not enforce mandatory deposits before 2019; (iii) only Iliev/Kalodimos/Lowry (2021, RFS) sits inside a journal regime (RFS Data Editors, post-2019) that mandates deposits, but the URL was not directly surfaced in initial searches and likely lives behind the journal's portal. **Practical implication:** Idea C will need to build its own pipeline rather than fork existing code.
+
+**Top 3 packages to pursue (by author email + journal portal request) — ranked by infrastructure value to Idea C:**
+
+1. **Iliev, Kalodimos, Lowry (2021, RFS) — Investors' Attention to Corporate Governance.** Highest probability of locating a usable package given RFS post-2019 deposit policy. Solves: EDGAR log file ingestion, parsing 2003+ archive files, IP-to-user identification heuristics, panel construction at the firm-day-IP level. This is the closest analog to Idea C's exposure-group construction. **Action:** check the RFS Data Editors portal directly and email Lowry (Drexel).
+
+2. **Lee, Ma, Wang (2015, JFE) — Search-Based Peer Firms.** Solves the *core methodological problem* for Idea C: building co-search dyads from EDGAR clickstream and validating them as economic peer-firm clusters. Even if code is not deposited, the JFE Internet Appendix typically contains pseudocode / SAS-style aggregation steps. **Action:** email Charles Lee (Stanford GSB) — he has historically shared SAS scripts on request. Falls back to building the algorithm from the published equations.
+
+3. **Drake, Roulstone, Thornock (2017, RAST) "Internet as Information Intermediary".** Solves: PCAOB-event-window construction logic, EDGAR access counts around regulatory disclosures (closest direct precedent to Idea C's main DV). Code unlikely to exist publicly, but Thornock (BYU) and Drake (BYU) actively maintain co-search infrastructure and have shared cleaned EDGAR-access panels with collaborators. **Action:** email Thornock — BYU has institutional infrastructure that may be reusable.
+
+**Infrastructure that still must be built from scratch (no precedent located):**
+- PCAOB inspection-report PDF parsing (Part I.A / I.B / II extraction). No public package exists for any paper in Cluster 2 — Aobdia (2019) and Aobdia/Choudhary/Sadka (2021) use proprietary PCAOB-internal data, sidestepping the parsing problem entirely.
+- PCAOB inspection-release event timestamping at engagement-partner × issuer × inspection-cycle granularity (Form AP × inspection report join).
+- Exposure-group construction: linking each issuer's *non-inspected peers* via co-search dyads, weighted by search-traffic intensity in a pre-event window. This is the original methodological contribution of Idea C and has no direct replication source.
+- Restatement / ICFR / fee outcome panels — Audit Analytics WRDS pulls; standard, no replication needed.
+
+**Bottom line:** Treat this catalogue as evidence that Idea C is in a *green-field* infrastructure space. The Lee/Ma/Wang (2015) co-search methodology and any RFS-mandated EDGAR-log packages are the only realistic forking targets; everything else (PDF parsing, Form AP joins, exposure-group construction) must be built native to this project.
+
 
