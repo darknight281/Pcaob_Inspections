@@ -76,19 +76,49 @@ signature on the 10-K, not the office.
 
 ## Open questions before discovery sprint
 
-1. Confirm Monash WRDS coverage of Audit Analytics
-   (`master_supporting_docs/data_sources.md`).
-2. Confirm storage / compute path for the full EDGAR log archive
-   (~2 TB; polars + duckdb the proposed processing path).
-3. Decide whether co-search peers are constructed à la Lee, Ma, & Wang
-   (2015) or Drake, Roulstone, & Thornock (2017, *RAST*); both
-   robustness-test the other.
-4. Ethics / reproducibility: confirm that deriving the four exposure
-   groups (directly exposed, indirectly exposed, industry peer,
-   control) does not require any non-public PCAOB metadata.
-5. Co-authorship boundary with Qinfang / Qiuhong — the existing
-   EDGAR project is the natural home or a sibling? Resolve before
-   `/discover` runs (research-notes §8 Q4).
+*Resolved 2026-04-29 — Oliver:*
+
+1. **Audit Analytics coverage — RESOLVED.** All Audit Analytics
+   modules for U.S. firms are subscribed via Monash WRDS. PostgreSQL
+   schema and table inventory to be fetched by sub-agent and
+   documented in `master_supporting_docs/data_sources.md`.
+2. **EDGAR storage — RESOLVED.** Cleaned data persisted as parquet
+   under `data/cleaned/`; raw ~2 TB log archive processed via polars
+   + duckdb (lazy / streaming) without full materialisation.
+3. **Co-search peer construction — RESOLVED.** Construct **both**
+   Lee, Ma, & Wang (2015, *JFE*) and Drake, Roulstone, & Thornock
+   (2017, *RAST*) peer sets. Each serves as the other's robustness
+   test; primary specification chosen empirically based on event-
+   window precision.
+4. **Public-data ethics — RESOLVED.** All four exposure groups are
+   constructible from public sources (PCAOB inspection PDFs, Audit
+   Analytics, EDGAR logs, Compustat). No non-public PCAOB metadata
+   required.
+5. **Co-authorship boundary with Qinfang / Qiuhong — RESOLVED.**
+   Idea C is Oliver's solo paper (sibling, not member of the
+   existing SEC EDGAR project). Standalone co-author decisions
+   deferred until first complete draft.
+
+## Sub-agent tasks (dispatched 2026-04-29)
+
+In parallel:
+
+- **Agent 1 (explorer):** WRDS Audit Analytics PostgreSQL schema,
+  table inventory, key columns, latest-data cut-offs. Output:
+  `master_supporting_docs/wrds_audit_analytics_schema.md`.
+- **Agent 2 (explorer):** WRDS Revelio Labs schema (replaces the
+  open question in `revelio_labs_integration.md` §9 Q1). Tables,
+  columns, refresh cadence. Output:
+  `master_supporting_docs/wrds_revelio_labs_schema.md`.
+- **Agent 3 (explorer):** PCAOB inspection report download paths +
+  Part I.A / I.B / II structure; Form AP CSV schema and field
+  definitions. Output:
+  `master_supporting_docs/pcaob_data_structure.md`.
+- **Agent 4 (general-purpose):** Replication-package hunt for
+  Drake-Roulstone-Thornock co-search papers, PCAOB inspection
+  event studies, and audit-deficiency labour outcome papers
+  (covers Ideas A/B/C). Output:
+  `master_supporting_docs/replication_packages.md`.
 
 ## Immediate next action
 
