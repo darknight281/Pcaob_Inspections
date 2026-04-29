@@ -1,14 +1,33 @@
-# CLAUDE.MD -- Empirical Economics Research with Claude Code
+# CLAUDE.MD -- PCAOB Inspections Research Program
 
-<!-- HOW TO USE: Replace [BRACKETED PLACEHOLDERS] with your project info.
-     Customize Beamer environments for your talk preamble.
-     Keep this file under ~150 lines — Claude loads it every session.
-     See the guide at https://hugosantanna.github.io/clo-author/ for full documentation. -->
+<!-- HOW TO USE: Keep this file under ~150 lines — Claude loads it every session.
+     Scaffold adapted from hugosantanna/clo-author @ 65176f7 (MIT). See guide/
+     for the upstream user manual; see master_supporting_docs/ for project context. -->
 
-**Project:** [YOUR PROJECT NAME]
-**Institution:** [YOUR INSTITUTION]
-**Field:** [YOUR FIELD — Economics by default. Can be adapted to Finance, Accounting, Marketing, etc.]
+**Project:** PCAOB Inspections — Audit Quality, Labour, and Information Spillovers
+**Author:** Oliver (Monash University)
+**Prospective collaborators:** Cam, Ahmed (and SEC EDGAR project: Qinfang, Qiuhong)
+**Field:** Accounting / Auditing (with audit labour-economics and information-economics framing)
+**Analysis language:** Python (3.11+) — pandas for small data, polars + duckdb for large
 **Branch:** main
+
+---
+
+## Research Program in Brief
+
+Five candidate papers exploiting the PCAOB inspection regime
+(established 2002; Form AP partner-disclosure since 31 Jan 2017):
+
+1. **Idea A** — Office-level workforce-strategy responses to deficiencies (LinkedIn-derived)
+2. **Idea B** — Cross-office spillovers within Big 4 networks
+3. **Idea C** — EDGAR information spillovers from inspection-report releases *(first paper)*
+4. **Idea D** — Audit-committee-network transmission of Part II disclosures
+5. **Idea E** — LLM textual mining of inspection narratives → restatement prediction
+
+See `master_supporting_docs/PCAOB_Inspection_Research_Discussion_Notes_v1.md`
+for the full design document, data pipeline, and reference set.
+
+**Current focus:** Idea C scoping (`quality_reports/plans/2026-04-29_idea_c_scoping.md`).
 
 ---
 
@@ -17,27 +36,41 @@
 - **Plan first** -- enter plan mode before non-trivial tasks; save plans to `quality_reports/plans/`
 - **Verify after** -- compile and confirm output at the end of every task
 - **Single source of truth** -- Paper `main.tex` is authoritative; talks and supplements derive from it
-- **Quality gates** -- weighted aggregate score; nothing ships below 80/100; see `quality.md`
+- **Quality gates** -- weighted aggregate score; nothing ships below 80/100; see `.claude/rules/quality.md`
 - **Worker-critic pairs** -- every creator has a paired critic; critics never edit files
 - **Auto-memory** -- corrections and preferences are saved automatically via Claude Code's built-in memory system
 
 ---
 
-## Getting Started
+## Data tooling convention
 
-1. Fill in the `[BRACKETED PLACEHOLDERS]` in this file
-2. Run `/discover interview [topic]` to build your research specification
-3. Or run `/new-project [topic]` for the full orchestrated pipeline
+- **`pandas`** for small/medium tabular work (<2 GB in memory); panel construction; final regressions.
+- **`polars` (lazy)** and **`duckdb`** for the EDGAR log files (~2 TB), Form AP × Audit Analytics joins, and any analytical pass that would not fit in pandas.
+- Materialise final analysis-ready panels as `.parquet` under `data/cleaned/`.
+- See `.claude/references/coding-standards-python.md` for the full stack.
+
+Primary data sources (status in `master_supporting_docs/data_sources.md`):
+
+| Source | Access | Use |
+|---|---|---|
+| PCAOB inspection reports (PDFs) | free, pcaobus.org | Deficiency narratives (Part I.A/I.B/II) |
+| Form AP | free, PCAOB | Engagement-partner × issuer × year |
+| Audit Analytics | WRDS subscription | Auditor city/office, fees, restatements, ICFR |
+| Compustat / CRSP / IBES | WRDS subscription | Financials, market data, forecasts |
+| EDGAR log files | free, SEC | Co-search dyads (Idea C) |
+| BoardEx / ISS Risk Metrics | WRDS subscription | Audit-committee networks (Idea D) |
+| LinkedIn / Revelio Labs / Lightcast | TBD | Office workforce dynamics (Ideas A, B) |
 
 ---
 
 ## Folder Structure
 
 ```
-[YOUR-PROJECT]/
-├── CLAUDE.MD                    # This file
+Pcaob_Inspections/
+├── CLAUDE.md                    # This file
+├── MEMORY.md                    # Session memory and context
 ├── .claude/                     # Rules, skills, agents, hooks
-├── Bibliography_base.bib        # Centralized bibliography
+├── Bibliography_base.bib        # Centralized bibliography (35 refs from research notes)
 ├── paper/                       # Main LaTeX manuscript (source of truth)
 │   ├── main.tex                 # Primary paper file
 │   ├── sections/                # Section-level .tex files
@@ -48,14 +81,13 @@
 │   ├── preambles/               # LaTeX headers / shared preamble
 │   ├── supplementary/           # Online appendix and supplements
 │   └── replication/             # Replication package for deposit
-├── data/                        # Project data
-│   ├── raw/                     # Original untouched data (often gitignored)
-│   └── cleaned/                 # Processed datasets ready for analysis
-├── scripts/                     # Analysis code (R, Python, Julia)
+├── data/                        # Project data (raw/ and cleaned/*.parquet gitignored)
+├── scripts/python/              # Analysis code (Python; pyproject.toml)
 ├── quality_reports/             # Plans, session logs, reviews, scores
 ├── explorations/                # Research sandbox (see rules)
 ├── templates/                   # Session log, quality report templates
-└── master_supporting_docs/      # Reference papers and data docs
+├── master_supporting_docs/      # Project context (research notes, data sources)
+└── guide/                       # Upstream clo-author user manual (Quarto site)
 ```
 
 ---
@@ -71,6 +103,9 @@ cd paper/talks && latexmk talk.tex
 
 # Clean auxiliary files
 cd paper && latexmk -c
+
+# Python environment (one-time setup)
+cd scripts/python && python -m venv ../../.venv && source ../../.venv/bin/activate && pip install -e .[dev]
 ```
 
 > **Note:** `paper/latexmkrc` configures XeLaTeX, TEXINPUTS, and BIBINPUTS.
@@ -87,7 +122,7 @@ cd paper && latexmk -c
 | 95 | Submission | Aggregate + all components >= 80 |
 | -- | Advisory | Talks (reported, non-blocking) |
 
-See `quality.md` for weighted aggregation formula.
+See `.claude/rules/quality.md` for weighted aggregation formula.
 
 ---
 
@@ -109,20 +144,19 @@ See `quality.md` for weighted aggregation formula.
 
 ---
 
-<!-- CUSTOMIZE: Replace the example entries below with your own
-     Beamer environments for talks. -->
-
 ## Beamer Custom Environments (Talks)
 
-| Environment       | Effect        | Use Case       |
-|-------------------|---------------|----------------|
-| `[your-env]`      | [Description] | [When to use]  |
+| Environment    | Effect                                  | Use Case                                      |
+|----------------|-----------------------------------------|-----------------------------------------------|
+| `keymsg`       | Full-slide highlighted statement        | Headline takeaway / one-line contribution     |
+| `result`       | Boxed numerical result with caption     | Coefficient, magnitude, or test statistic     |
+
+(Placeholders — finalise envs when the first talk preamble is built in `paper/talks/`.)
 
 ---
 
 ## Output Organization
 
-<!-- Options: by-script (default) or by-purpose -->
 Output organization: by-script
 
 <!-- by-script:  paper/figures/main_regression/figure1.pdf, paper/tables/main_regression/table1.tex -->
@@ -132,9 +166,9 @@ Output organization: by-script
 
 ## Current Project State
 
-| Component | File | Status | Description |
-|-----------|------|--------|-------------|
-| Paper | `paper/main.tex` | [draft/submitted/R&R] | [Brief description] |
-| Data | `scripts/R/` | [complete/in-progress] | [Analysis description] |
-| Replication | `paper/replication/` | [not started/ready] | [Deposit status] |
-| Job Market Talk | `paper/talks/job_market_talk.tex` | -- | [Status] |
+| Component       | File                              | Status                       | Description                                                                 |
+|-----------------|-----------------------------------|------------------------------|-----------------------------------------------------------------------------|
+| Paper           | `paper/main.tex`                  | not started — Idea C scoping | First paper: EDGAR information spillovers from PCAOB inspection releases    |
+| Data pipeline   | `scripts/python/`                 | design phase                 | PDF extraction + Form AP × Audit Analytics × EDGAR joins                    |
+| Replication     | `paper/replication/`              | not started                  | -                                                                           |
+| Job Market Talk | `paper/talks/job_market_talk.tex` | not started                  | -                                                                           |

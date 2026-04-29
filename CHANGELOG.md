@@ -1,6 +1,19 @@
 # Changelog
 
-All notable changes to the Clo-Author are documented here.
+This repository forks the Clo-Author research scaffold for the
+PCAOB Inspections research program. Pre-fork entries (v0–v4.2.0)
+record the upstream history; post-fork entries record changes made
+in this repository.
+
+---
+
+## [PCAOB-INSPECTIONS-FORK] — 2026-04-29 — Initial fork
+
+Forked from `hugosantanna/clo-author` at commit `65176f7` (v4.2.0).
+Wiped clo-author's example session logs and plans, switched the
+analysis stack to Python (pandas / polars / duckdb), rebranded
+`CLAUDE.md` and `README.md` for the PCAOB Inspections program, and
+seeded project context from the supervisor-discussion notes (v1).
 
 ---
 
