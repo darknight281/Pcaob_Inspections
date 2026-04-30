@@ -177,9 +177,9 @@ Output organization: by-script
 
 ## Current Project State
 
-*Last updated: 2026-04-30*
+*Last updated: 2026-05-01*
 
-**Active focus:** Idea C — EDGAR information spillovers from PCAOB inspection-report releases. Scoping phase complete; literature-discovery sprint is the next gate.
+**Active focus:** Idea C — EDGAR information spillovers from PCAOB inspection-report releases. Scoping phase complete; WRDS access wired (`.pgpass` + env vars + `/db2pq-download`); literature-discovery sprint is the next gate.
 
 | Component       | File                                              | Status                          | Description                                                                 |
 |-----------------|---------------------------------------------------|---------------------------------|-----------------------------------------------------------------------------|
