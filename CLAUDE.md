@@ -50,6 +50,16 @@ for the full design document, data pipeline, and reference set.
 - Materialise final analysis-ready panels as `.parquet` under `data/cleaned/`.
 - See `.claude/references/coding-standards-python.md` for the full stack.
 
+### WRDS access (local machine)
+
+WRDS runs from the local machine — credentials are already configured outside the repo:
+
+- `~/.pgpass` holds the WRDS PostgreSQL password (host `wrds-pgdata.wharton.upenn.edu`, port 9737).
+- Shell environment variables hold the WRDS username/password for the `wrds` Python package.
+- **Never commit credentials.** `.pgpass`, `.env`, and `.claude/state/*` are gitignored; agents must not echo or write secrets into the repo.
+
+**Use the `/db2pq-download` skill** as the canonical path for pulling WRDS tables to local parquet (Audit Analytics, Compustat, CRSP, IBES, BoardEx, ISS Risk Metrics, Revelio Labs). Outputs land under `data/cleaned/*.parquet`. Prefer this over writing ad-hoc `wrds.Connection()` scripts.
+
 Primary data sources (status in `master_supporting_docs/data_sources.md`):
 
 | Source | Access | Use |
@@ -167,9 +177,22 @@ Output organization: by-script
 
 ## Current Project State
 
-| Component       | File                              | Status                       | Description                                                                 |
-|-----------------|-----------------------------------|------------------------------|-----------------------------------------------------------------------------|
-| Paper           | `paper/main.tex`                  | not started — Idea C scoping | First paper: EDGAR information spillovers from PCAOB inspection releases    |
-| Data pipeline   | `scripts/python/`                 | design phase                 | PDF extraction + Form AP × Audit Analytics × EDGAR joins                    |
-| Replication     | `paper/replication/`              | not started                  | -                                                                           |
-| Job Market Talk | `paper/talks/job_market_talk.tex` | not started                  | -                                                                           |
+*Last updated: 2026-04-30*
+
+**Active focus:** Idea C — EDGAR information spillovers from PCAOB inspection-report releases. Scoping phase complete; literature-discovery sprint is the next gate.
+
+| Component       | File                                              | Status                          | Description                                                                 |
+|-----------------|---------------------------------------------------|---------------------------------|-----------------------------------------------------------------------------|
+| Paper           | `paper/main.tex`                                  | not started — pre-discovery     | First paper: EDGAR information spillovers from PCAOB inspection releases    |
+| Idea C plan     | `quality_reports/plans/2026-04-29_idea_c_scoping.md` | scoping complete; 5 open Qs resolved 2026-04-29 | Firm × industry treatment, client-firm outcome, stacked DiD (CS / SA)        |
+| Data references | `master_supporting_docs/`                         | schemas captured                | PCAOB/Form AP, WRDS Audit Analytics, WRDS Revelio Labs, replication packages |
+| Data pipeline   | `scripts/python/`                                 | not started                     | PDF extraction + WRDS pulls (`/db2pq-download`) + EDGAR joins (polars/duckdb)|
+| Replication     | `paper/replication/`                              | not started                     | -                                                                           |
+| Job Market Talk | `paper/talks/job_market_talk.tex`                 | not started                     | -                                                                           |
+
+**Immediate next actions** (from `quality_reports/plans/2026-04-29_idea_c_scoping.md`):
+
+1. Run `/discover literature` for Idea C — librarian + librarian-critic produce the literature map and contribution slot.
+2. Run `/checkpoint` to instantiate `SESSION_REPORT.md` and `quality_reports/research_journal.md`.
+3. Run `/discover data` for Idea C — explorer feasibility-grades the EDGAR + Audit Analytics + PCAOB stack.
+4. Use `/db2pq-download` to pull the Audit Analytics tables identified by step 3 into `data/cleaned/`.
