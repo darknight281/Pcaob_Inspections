@@ -10,9 +10,10 @@
 
 - **Classification is probably feasible at the level of 5–6 families.** PCAOB Part II prose is formulaic
   ("the firm's system of quality control does not provide reasonable assurance that …"). The object of that
-  clause names *where* the QC system failed, which makes coding tractable. The USD study (see §8) coded
-  106 released QC reports by QC element, and Aobdia (2020) split confidential QC deficiencies into
-  performance-related and organisation-level ones. Both are proofs of concept.
+  clause names *where* the QC system failed, which makes coding tractable. Ragothaman (2012, symposium
+  paper; see §8) compared 106 released QC reports with peer-review reports by QC element, and Aobdia (2020)
+  split confidential QC deficiencies into performance-related and organisation-level ones. Both are
+  proofs of concept, though only Aobdia is peer-reviewed.
 - **The main theoretical risk is text framing, not coder reliability.** The PCAOB describes *loci*
   (supervision, EQR, controls testing, independence) far more often than *mechanisms* (incentives, culture,
   capacity). Families defined by mechanism (Monitoring, Incentives & Culture) may therefore be thin in the
@@ -147,10 +148,13 @@ Three layers, in increasing order of demandingness:
 - Carlisle, M., Yu, W., & Church, B. (2022). The effect of small audit firms' failure to remediate the
   PCAOB's quality control criticisms on audit market segmentation. *Journal of Accounting and Public
   Policy*.
-- "Watching the Watchdogs: An Examination of the PCAOB Quality Control Inspection Reports on Triennially
-  Inspected Audit Firms and the AICPA Peer Review Reports." University of South Dakota repository.
-  Covers 106 PCAOB QC reports vs 2,355 peer-review reports, coded by QC element, with more
-  engagement-performance deficiencies in PCAOB reports. *Authors and outlet unverified.*
+- Ragothaman, S. (2012). Watching the watchdogs: An examination of the PCAOB quality control inspection
+  reports on triennially inspected audit firms and the AICPA peer review reports. Presented at the
+  Deloitte Foundation / University of Kansas Auditing Symposium, April 2012. University of South Dakota
+  faculty repository. It compares 106 public PCAOB QC reports on triennially inspected firms with 2,355
+  AICPA peer-review reports (firms with < 100 SEC clients). PCAOB reports disclose significantly more
+  engagement-performance deficiencies. *Conference paper; no journal version found. Co-authors, if any,
+  and the exact coding scheme are unverified; the full text was not reachable from the cloud session.*
 - Constance (2025). PCAOB inspection deficiencies and future financial reporting quality: Do the types of
   deficiencies matter? *CAR*. This is Part I deficiency types, not QC; useful as a design template.
 - Aobdia, D., Li, E. X., Ramesh, K., & Shen, M. (2025). Deciphering the PCAOB inspection process:
