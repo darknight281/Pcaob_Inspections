@@ -10,10 +10,14 @@
 
 - **Classification is probably feasible at the level of 5–6 families.** PCAOB Part II prose is formulaic
   ("the firm's system of quality control does not provide reasonable assurance that …"). The object of that
-  clause names *where* the QC system failed, which makes coding tractable. Ragothaman (2012, symposium
-  paper; see §8) compared 106 released QC reports with peer-review reports by QC element, and Aobdia (2020)
-  split confidential QC deficiencies into performance-related and organisation-level ones. Both are
-  proofs of concept, though only Aobdia is peer-reviewed.
+  clause names *where* the QC system failed, which makes coding tractable. Three proofs of concept (§8):
+  - Buslepp, DeLisle & Victoravich (2018, *MAJ*) split public Part II criticisms into audit-performance
+    vs firm-management criticisms, and find different client responses by type.
+  - Ragothaman (2012, symposium paper) compared 106 released QC reports with peer-review reports by QC
+    element.
+  - Aobdia (2020) split confidential QC deficiencies into performance-related and organisation-level ones.
+
+  No study found uses a theory-based typology finer than two types, or links types to firm-side responses.
 - **The main theoretical risk is text framing, not coder reliability.** The PCAOB describes *loci*
   (supervision, EQR, controls testing, independence) far more often than *mechanisms* (incentives, culture,
   capacity). Families defined by mechanism (Monitoring, Incentives & Culture) may therefore be thin in the
@@ -159,10 +163,29 @@ Three layers, in increasing order of demandingness:
   deficiencies matter? *CAR*. This is Part I deficiency types, not QC; useful as a design template.
 - Aobdia, D., Li, E. X., Ramesh, K., & Shen, M. (2025). Deciphering the PCAOB inspection process:
   Evidence and predictive insights from public data. *Management Science*.
-- "Does Part II of the PCAOB inspection report provide new information to the market?" *Managerial
-  Auditing Journal* 33(8/9) (2018). *Authors unverified.*
-- "No news is bad news: Do PCAOB Part II reports have an effect on annually inspected firms' audit fees
-  and audit quality?" *Journal of Accounting and Public Policy* (2017). *Authors unverified.*
+- Buslepp, W., DeLisle, R. J., & Victoravich, L. (2018). Does Part II of the PCAOB inspection report
+  provide new information to the market? A re-examination of prior evidence. *Managerial Auditing
+  Journal*, 33(8/9), 715–735. **The only published study found that splits public Part II criticisms
+  by type:** "audit performance" vs "firm management" criticisms (used in a sensitivity analysis).
+  Clients of firms with audit-performance criticisms leave after Part I is released. Clients of firms
+  with firm-management criticisms leave during the remediation window, before Part II is public. This is
+  prior evidence that the client response differs by criticism type. It is a coarse two-way split with
+  a market-share outcome, so a finer theory-based typology with firm and real-margin responses is still
+  open. *Exact coding rules not seen; full text not reachable from the cloud session.*
+- Nagy, A. L. (2014). PCAOB quality control inspection reports and auditor reputation. *AJPT*, 33(3),
+  87–104. Market-share loss after public QC disclosure. No type classification found in the abstract.
+- Johnson, E. N., Reichelt, K. J., & Soileau, J. S. (2018). No news is bad news: Do PCAOB Part II reports
+  have an effect on annually inspected firms' audit fees and audit quality? *Journal of Accounting
+  Literature*, 41(1), 106–126. Annually inspected firms, 2007–2015. No type classification found in the
+  abstract.
+- Ahn, J., Akamah, H. T., & Shu, S. Q. (2021). The effect of disclosing audit quality control deficiencies
+  on non-audit tax services: Evidence from Deloitte's 2007 PCAOB Part II inspection report. *JAPP*.
+  Deloitte's 2007-inspection Part II (made public 17 Oct 2011, the first Big Four release) concerned
+  audits of income-tax accounts. Deloitte clients became 17% less likely to buy auditor-provided tax
+  services. This is a single-criticism, type-specific response, in the spirit of H4.
+- Buslepp, W. L., & Victoravich, L. Does the PCAOB's quality control remediation process promote audit
+  report and financial statement reliability? SSRN working paper 1883668. Firms that failed to remediate
+  have more restatements than firms that remediated. No type split found in the abstract.
 - DeAngelo, L. E. (1981). Auditor size and audit quality. *JAE*, 3(3), 183–199. This is the competence ×
   independence decomposition.
 - Merchant, K. A., & Van der Stede, W. A. *Management Control Systems* (textbook). Control-type lens.
@@ -175,5 +198,7 @@ Three layers, in increasing order of demandingness:
   (2026, *AJPT* 45(3)) paper above. The author list and year in the notes look wrong.
 - Ref 1 ("Acito, Hogan & Imdieke 2019, *TAR* 94(4), Realising auditor responses to PCAOB Part II…") could
   not be verified. Treat it as unverified until located.
-- §2.2 lists "Deloitte 2007" as a Part II example. The 2007 Deloitte event studied by Boone, Khurana &
-  Raman (2015) is a disciplinary order, not a Part II release.
+- §2.2's "Deloitte 2007" Part II example is correct. It is the Part II of Deloitte's 2007 inspection
+  report, made public on 17 Oct 2011 (Ahn, Akamah & Shu 2021). Keep it distinct from the separate
+  December 2007 PCAOB disciplinary order studied by Boone, Khurana & Raman (2015). *(An earlier version of
+  this memo wrongly called it a disciplinary order only; corrected 2026-09-23.)*

@@ -40,8 +40,10 @@ Theory and codebook: `explorations/qc_criticism_taxonomy/feasibility_memo.md` an
   family above the 95th percentile of the permutation null.
 - **G5 Response data:** ≥ 60% of released documents carry a firm response with ≥ 1 QC/remediation sentence.
 
-Fallback if G3 fails at six families: collapse to Aobdia's (2020) two-way split
-(performance-related vs organisation-level) and re-test.
+Fallback if G3 fails at six families: collapse to the two-way split used in prior work and re-test.
+That split is audit-performance vs firm-management criticisms (Buslepp, DeLisle & Victoravich 2018,
+public Part II), which corresponds to Aobdia's (2020) performance-related vs organisation-level
+(confidential data).
 
 ## Blockers (as of 2026-09-23)
 
