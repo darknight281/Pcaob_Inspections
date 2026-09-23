@@ -1,0 +1,35 @@
+SYNTHETIC TEST FIXTURE — written for unit tests. Not a PCAOB document; no text is quoted from any report.
+
+2019 Inspection Example Audit LLP
+
+TABLE OF CONTENTS
+
+Part I Inspection Procedures and Certain Observations 3
+
+Part II Criticisms of, and Potential Defects in, the Firm's System of Quality Control 9
+
+Part III Response of the Firm to Draft Inspection Report 14
+
+PART I INSPECTION PROCEDURES AND CERTAIN OBSERVATIONS
+
+The inspection team reviewed four issuer audits. In the audit of Issuer A, the engagement team did not perform sufficient procedures to test the accuracy and completeness of system-generated reports used in testing revenue.
+
+PART II CRITICISMS OF, AND POTENTIAL DEFECTS IN, THE FIRM'S SYSTEM OF QUALITY CONTROL
+
+Section 104(g)(2) of the Act restricts the Board's public disclosure of criticisms of a firm's quality control system. The Board has determined to make public the portions below because the firm did not address them within 12 months.
+
+A. Engagement Quality Review
+
+The inspection results indicate that the firm's system of quality control does not provide reasonable assurance that engagement quality reviews are performed with due professional care. In two of the audits inspected, the engagement quality reviewer did not evaluate the significant judgments made by the engagement team.
+
+B. Independence
+
+Firm personnel did not comply with the firm's policies requiring the reporting of financial holdings. The firm's independence monitoring procedures did not detect these holdings on a timely basis.
+
+C. Personnel Management
+
+The firm's policies do not require that partners assigned to audits of internal control over financial reporting have appropriate technical competence, and the firm has not provided training on testing management review controls. Partner evaluations give little weight to audit quality, and the deficiencies described above appear to result from this emphasis on revenue growth.
+
+PART III RESPONSE OF THE FIRM TO DRAFT INSPECTION REPORT
+
+Dear Director: We appreciate the opportunity to respond. We agree with the observations and are committed to audit quality. In 2020 we implemented a revised independence tracking system, hired 12 additional professionals for our national office, and delivered training on engagement quality review. We performed a root cause analysis. For Issuer A we performed additional procedures and our opinion remained appropriate.

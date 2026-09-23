@@ -71,3 +71,10 @@ paper/quarto/.quarto/
 # *.rds
 # output/**/*.rds
 docs/
+
+# Nested cleaned outputs (e.g. data/cleaned/pcaob/*.parquet, LLM coder JSONL)
+data/cleaned/**/*.parquet
+data/cleaned/**/*.jsonl
+data/cleaned/**/*.id
+.pytest_cache/
+.ruff_cache/

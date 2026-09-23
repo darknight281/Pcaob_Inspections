@@ -1,0 +1,280 @@
+# Machine-readable taxonomy for PCAOB QC (Part II) criticisms.
+# Definitions and decision rules live in codebook.md; keep code ids in sync with it.
+# Regexes are Python `re` patterns, matched case-insensitively. Single-quoted YAML keeps
+# backslashes literal.
+
+version: "0.1"
+
+families:
+  OBJ: {label: "Objectivity", qc20: "Independence, integrity & objectivity; Acceptance & continuance", qc1000: "Ethics & independence; Acceptance & continuance"}
+  CAP: {label: "Capability", qc20: "Personnel management; Engagement performance (methodology, consultation)", qc1000: "Resources"}
+  EXE: {label: "Execution", qc20: "Engagement performance", qc1000: "Engagement performance"}
+  MON: {label: "Monitoring", qc20: "Monitoring (+ EQR)", qc1000: "Monitoring & remediation (+ EQR)"}
+  INC: {label: "Incentives & culture", qc20: "Personnel management (advancement)", qc1000: "Governance & leadership"}
+  PRO: {label: "Procedural compliance", qc20: "-", qc1000: "Information & communication (partly)"}
+  OTHER: {label: "Other / boilerplate", qc20: "-", qc1000: "-"}
+
+# Order used to break ties for the rule-based primary family (most specific first).
+primary_tiebreak: [PRO, OBJ, MON, INC, CAP, EXE, OTHER]
+
+codes:
+  OBJ_INDEP:
+    family: OBJ
+    patterns:
+      - '\bindependen(ce|t)\b'
+      - 'financial (interest|holding|relationship)s?'
+      - 'independence (confirmation|compliance|consultation|tracking|monitoring|polic)'
+      - '(prohibited|impermissible) (financial|employment|business) relationship'
+      - 'rule 2-01|rule 3520'
+  OBJ_NAS:
+    family: OBJ
+    patterns:
+      - 'non-?audit services?'
+      - 'pre-?approv'
+      - 'rule 352[1-6]'
+      - 'contingent fee'
+  OBJ_ACCEPT:
+    family: OBJ
+    patterns:
+      - '(client|engagement) acceptance'
+      - 'acceptance (and|or) continuance'
+      - '\bcontinuance\b'
+      - '(accept|continu)(e|ed|ing) (new |an? )?(client|engagement)s?'
+  OBJ_INTEGRITY:
+    family: OBJ
+    patterns:
+      - '\bintegrity\b'
+      - '\bethic(s|al)\b'
+      - '(alter|backdat|improperly (added|modified|deleted))\w*.{0,60}(work ?papers?|documentation)'
+      - 'cheat|misconduct'
+  CAP_STAFF:
+    family: CAP
+    patterns:
+      - '(assign|assigning|assigned|staffing)\b.{0,60}(personnel|engagement teams?|partners?)'
+      - '(appropriate|sufficient|necessary|requisite) (technical )?(competence|expertise|experience|knowledge|proficiency)'
+      - '(technical|industry) (competence|expertise|proficiency|knowledge)'
+      - 'workload|capacity|staffing levels?|resource constraints?'
+      - 'qualified personnel|lack(s|ed)? (the )?(experience|expertise)'
+  CAP_TRAIN:
+    family: CAP
+    patterns:
+      - '\btrain(ing|ed)?\b'
+      - 'continuing professional education|\bcpe\b'
+      - 'professional development'
+  CAP_METHOD:
+    family: CAP
+    patterns:
+      - '\bmethodolog(y|ies)\b'
+      - 'practice aids?|audit programs?|\btemplates?\b|audit software'
+      - "firm'?s (guidance|policies and procedures do not (require|address))"
+      - '(does not|did not) provide (sufficient |adequate )?guidance'
+  CAP_CONSULT:
+    family: CAP
+    patterns:
+      - '\bconsult(ation|ations|ing|ed)?\b'
+      - '\bspecialists?\b'
+      - 'national office|professional practice (group|department)'
+  EXE_EVIDENCE:
+    family: EXE
+    patterns:
+      # Locus, not area (codebook P2): area words such as "revenue" are deliberately absent.
+      - 'sufficient (appropriate )?audit evidence'
+      - 'substantive (procedures|testing|analytical)'
+      - '(accounting|significant) estimates?|fair value measurements?'
+      - 'going concern'
+      - '(reasonableness|assumptions|methods) (of|used|underlying)'
+  EXE_CONTROLS:
+    family: EXE
+    patterns:
+      - 'internal control over financial reporting|\bicfr\b'
+      - 'test(s|ing|ed)? (of )?(the )?(design|operating effectiveness)'
+      - 'review (element|controls?)|management review'
+      - '\bprecision\b'
+      - '(identify|identifying|select|selecting|test|testing) (the )?controls'
+  EXE_IPE:
+    family: EXE
+    patterns:
+      - '(information|data|reports?) produced by (the )?(company|issuer|entity|client)'
+      - '\bipe\b|system-generated'
+      - '(accuracy|completeness) (and|or) (completeness|accuracy)'
+      - 'reliance on (data|reports?|information)'
+  EXE_SKEPTIC:
+    family: EXE
+    patterns:
+      - 'professional skepticism'
+      - 'due (professional )?care'
+      - 'contradictory evidence'
+  EXE_SUPERV:
+    family: EXE
+    patterns:
+      - 'supervis(e|es|ed|ion|ing|ory)'
+      - 'as 1201'
+      - 'review of (the )?(work|work ?papers|audit documentation) (performed )?by'
+  EXE_DOC:
+    family: EXE
+    patterns:
+      - 'audit documentation|work ?papers?'
+      - 'as 1215'
+      - '(document|documented) (its|their|the) (work|procedures|conclusions)'
+  EXE_OTHERAUD:
+    family: EXE
+    patterns:
+      - '(other|component|referred-to|affiliated) (auditors?|firms?)'
+      - 'multi-?location|network firms?'
+      - 'as 120[56]'
+      - 'work of (other|component) auditors?'
+  MON_EQR:
+    family: MON
+    patterns:
+      - 'engagement quality (review|reviewer)s?'
+      - '\beqr\b'
+      - 'concurring (partner )?review'
+      - 'as 1220'
+  MON_INSPECT:
+    family: MON
+    patterns:
+      - 'internal (quality )?(inspection|review|monitoring)s?'
+      - '\bmonitoring\b'
+      - 'inspection (program|process|procedures)'
+      - 'root[- ]cause'
+  MON_REMED:
+    family: MON
+    patterns:
+      - '(previously|prior|earlier)(ly)? (identified|reported)'
+      - '\b(recur|recurring|recurrence|persist|persistent|repeated)\b'
+      - '(did not|failed to|has not) (adequately )?(address|correct|remediate)'
+      - 'prior (pcaob )?inspections?'
+  INC_ACCOUNT:
+    family: INC
+    patterns:
+      - '(partner|personnel|performance) (evaluation|appraisal)s?'
+      - '\bcompensation\b|\bpromotion\b|\bincentives?\b|\breward'
+      - 'accountab|\bconsequences?\b|disciplin'
+  INC_TONE:
+    family: INC
+    patterns:
+      - 'tone at the top'
+      - '\bleadership\b|\bculture\b|\bgovernance\b'
+      - '(emphasis|emphasi[sz]e[sd]?|messag(e|es|ing)) (on|about|regarding) (audit )?quality'
+      - 'commercial (considerations|pressures?)|(revenue|profit|growth) (goals|targets)'
+  PRO_FORMAP:
+    family: PRO
+    patterns:
+      - '\bform ap\b'
+      - 'rule 3211'
+      - 'audit participants?'
+  PRO_REPORT:
+    family: PRO
+    patterns:
+      - "auditor'?s reports? (did not|does not|failed to|omitted|contain|include)"
+      - 'critical audit matters?|\bcams?\b'
+      - 'as 310[15]'
+      - '(dual[- ])?dat(e|ed|ing) (of )?(the )?(auditor|audit) report'
+  PRO_COMMS:
+    family: PRO
+    patterns:
+      - 'communicat\w* (with|to) (the )?audit committees?'
+      - 'as 1301'
+
+# Form of the deficiency (codebook A.5). First match wins in this order.
+forms:
+  DESIGN:
+    - '(policies|procedures|policies and procedures) (do|did|does) not (require|address|include|provide)'
+    - '(has|had) not (established|designed|implemented|adopted)'
+    - '(does|did) not have (policies|procedures|a process)'
+    - '(no|lack of|absence of) (policies|procedures|process|guidance)'
+    - '(does|did|has|have) not (provide|provided|include|included)d? (sufficient |adequate |appropriate |any )?(guidance|training|policies|procedures|methodology)'
+  OPERATION:
+    - '(did|does) not (comply|follow|adhere)'
+    - '(were|was) not (followed|complied|performed|effective|operating)'
+    - 'failed to (comply|follow|perform)'
+    - 'not in compliance'
+  PATTERN:
+    - '(inspection|inspections) (results|findings)'
+    - '(in|on) (\w+ )?(\w+ )?(of the )?(audits|engagements|issuer audits) (inspected|reviewed)'
+    - 'deficiencies (described|identified|discussed) in part i'
+    - '\bissuer [a-z]\b'
+
+# Explicit causal language for root_cause_stated (codebook P6).
+root_cause_patterns:
+  - '\bbecause\b'
+  - '\bdue to\b'
+  - '\bresult(ed|ing)? from\b'
+  - '\bled to\b|\bcontributed to\b|\battributable to\b'
+
+# Section detection for released QC portions (scripts/02_extract_segment.py).
+section:
+  start:
+    - 'criticisms of,? and potential defects in,? the firm.{0,5}s system of quality control'
+    - 'part ii\b.{0,80}(quality control|criticisms)'
+    - '(issues|observations|matters) related to (the firm.{0,5}s )?quality control'
+    - 'quality control criticisms'
+    - 'portions? of (the )?(report|part ii).{0,80}(made public|previously nonpublic|nonpublic portion)'
+  end:
+    - '\bpart iii\b'
+    - '\bpart iv\b'
+    - '\bappendix [a-z]\b'
+    - 'response(s)? (of|by|from) the firm'
+    - "firm'?s response"
+    - 'response to (the )?(draft )?(inspection )?report'
+  min_section_chars: 300
+  boilerplate:
+    - 'section 104\(g\)\(2\)'
+    - '12 months|twelve months'
+    - 'restricts? the board.{0,5}s public disclosure'
+    - 'board (has )?determined to make public'
+    - 'nonpublic portions? of (the|this) report'
+  anchor_sentences:
+    - 'reasonable assurance'
+    - 'system of quality control'
+    - 'the (board|inspection team) (has concerns|identified|observed)'
+    - 'inspection (results|findings) indicate'
+  response_start:
+    - 'response(s)? (of|by|from) the firm'
+    - "firm'?s response"
+    - 'response to (the )?(draft )?(inspection )?report'
+    - 'appendix [a-z].{0,120}response'
+
+# Response-letter coding (codebook Part B), rule-based baseline.
+responses:
+  stance:
+    CONTEST:
+      - '\b(disagree|do not agree|respectfully)\b'
+      - 'continue to believe|we believe (that )?(the|our) (audit|opinion|procedures|work).{0,60}(appropriate|sufficient|supported|adequate)'
+    ACCEPT_WITH_CONTEXT:
+      - '(did not|does not|no) (affect|impact|change)\w*.{0,40}(opinion|financial statements|conclusions)'
+      - 'no (restatement|material misstatement)'
+      - 'remained appropriate'
+    ACCEPT:
+      - '\b(agree|concur|appreciate|committed|commitment|take (these|the) (findings|matters) seriously)\b'
+      - '(have|has) (taken|implemented|enhanced|revised|developed)'
+  actions:
+    ACT_POLICY: ['(new|revised|enhanced|updated) (policies|procedures|polic)']
+    ACT_TRAINING: ['\btrain(ing|ed)?\b|\bcpe\b']
+    ACT_STAFFING: ['\bhir(e|ed|ing)\b|additional (personnel|staff|resources)|specialists?|reassign']
+    ACT_METHOD_TOOLS: ['methodolog|guidance|practice aids?|templates?|tools?|technology|software']
+    ACT_MONITORING: ['engagement quality review|monitoring|internal inspection|root[- ]cause|quality review']
+    ACT_LEADERSHIP_ACCOUNTABILITY: ['leadership|tone at the top|accountab|compensation|evaluation|consequence']
+    ACT_INDEPENDENCE_SYSTEMS: ['independence|financial (interest|holding)s?|tracking system']
+    ACT_CLIENT_PORTFOLIO: ['(resign|resigned|declin|discontinu)\w* .{0,40}(client|engagement)']
+    ACT_ENGAGEMENT_REWORK: ['additional (procedures|audit procedures|work)|(re-?performed|supplemented) (the )?(procedures|work)']
+  specific_markers:
+    - '\b(19|20)\d{2}\b'
+    - '\b\d+\s*(hours|partners|professionals|employees|percent|%)'
+    - '\b(implemented|established|appointed|hired|launched|introduced)\b'
+  root_cause_markers: ['root[- ]cause']
+
+# Firms treated as annually inspected (>100 issuer audits) for stratification.
+# Approximate list; confirm against PCAOB's annually inspected list for each year.
+annual_firm_patterns:
+  - 'deloitte'
+  - 'ernst|\bey\b'
+  - 'kpmg'
+  - 'pricewaterhouse|\bpwc\b'
+  - 'grant thornton'
+  - '\bbdo\b'
+  - 'crowe'
+  - '\brsm\b|mcgladrey'
+  - 'marcum'
+  - 'moss adams'
+  - 'baker tilly'

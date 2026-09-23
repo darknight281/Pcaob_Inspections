@@ -39,6 +39,12 @@ When a mistake is corrected, append a `[LEARN:category]` entry below.
 
 <!-- Append new [LEARN:data] and [LEARN:method] entries as they accumulate. -->
 
+[LEARN:data] Cloud (claude.ai/code) sessions for this repo cannot reach pcaobus.org, assets.pcaobus.org, sec.gov, or WRDS (egress policy; no credentials). This applies to curl and WebFetch alike, and was confirmed 2026-09-23. WebSearch still works. Anything that downloads PCAOB/EDGAR/WRDS data must run on Oliver's laptop, or after the hosts are added to the environment's allowed domains.
+
+[LEARN:data] Public Part II (QC) criticisms = portions the firm failed to remediate within 12 months; PCAOB lists them on "Firms that Failed to Address Quality Control Criticisms Satisfactorily". The sample is selected on non-remediation (≈40% unsatisfactory determinations in 2023), so type shares ≠ incidence.
+
+[LEARN:method] Closest precedent for QC-deficiency types is Aobdia (2020, Management Science 66(7)), which uses confidential PCAOB data and splits deficiencies into performance-related vs organisation-level. The KPMG 2014/2015 Part II paper is Cao, Cheng, Sharma & Zhang (2026, AJPT 45(3)), not the author list in discussion-notes ref 12.
+
 ---
 
 ## Writing and Style

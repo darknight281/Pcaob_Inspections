@@ -187,6 +187,7 @@ Output organization: by-script
 | Idea C plan     | `quality_reports/plans/2026-04-29_idea_c_scoping.md` | scoping complete; 5 open Qs resolved 2026-04-29 | Firm × industry treatment, client-firm outcome, stacked DiD (CS / SA)        |
 | Data references | `master_supporting_docs/`                         | schemas captured                | PCAOB/Form AP, WRDS Audit Analytics, WRDS Revelio Labs, replication packages |
 | Data pipeline   | `scripts/python/`                                 | not started                     | PDF extraction + WRDS pulls (`/db2pq-download`) + EDGAR joins (polars/duckdb)|
+| QC criticism taxonomy | `explorations/qc_criticism_taxonomy/`       | exploration — built, awaiting local data run | Feasibility of classifying public Part II QC criticisms into theory-based types (Ideas E, A/B) |
 | Replication     | `paper/replication/`                              | not started                     | -                                                                           |
 | Job Market Talk | `paper/talks/job_market_talk.tex`                 | not started                     | -                                                                           |
 
