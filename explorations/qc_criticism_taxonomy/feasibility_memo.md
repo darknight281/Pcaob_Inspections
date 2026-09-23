@@ -196,9 +196,62 @@ Three layers, in increasing order of demandingness:
 
 - Ref 12 ("Cao, Chen, Lin & Petacchi 2025, KPMG Part II") appears to be the Cao, Cheng, Sharma & Zhang
   (2026, *AJPT* 45(3)) paper above. The author list and year in the notes look wrong.
-- Ref 1 ("Acito, Hogan & Imdieke 2019, *TAR* 94(4), Realising auditor responses to PCAOB Part II…") could
-  not be verified. Treat it as unverified until located.
+- Ref 1 ("Acito, Hogan & Imdieke 2019, *TAR* 94(4)") could not be verified. What exists is an Acito, Hogan &
+  Imdieke ISAR 2014 conference paper. The *TAR* paper on textual deficiency measures is Acito, Hogan &
+  Mergenthaler (2018, *TAR* 93(2)).
+- Ref 17 ("Drake, Goldman, Lusch & Schmidt 2024, topic-modelling WP") could not be found. The verified
+  paper by these authors is K. Drake, Goldman & Lusch (2016, *TAR* 91(5), 1411–1439) on Deloitte's
+  income-tax Part II criticism. The 2024 citation may be a conflation; confirm before citing.
 - §2.2's "Deloitte 2007" Part II example is correct. It is the Part II of Deloitte's 2007 inspection
   report, made public on 17 Oct 2011 (Ahn, Akamah & Shu 2021). Keep it distinct from the separate
   December 2007 PCAOB disciplinary order studied by Boone, Khurana & Raman (2015). *(An earlier version of
   this memo wrongly called it a disciplinary order only; corrected 2026-09-23.)*
+
+## 9. Overlap with prior work and positioning (added 2026-09-23)
+
+Web search, abstracts only. Idea as stated: "categorise PCAOB deficiencies, then test whether responses
+vary by category."
+
+**Step 1: categorising deficiencies is well established.** It is not a contribution on its own.
+
+| Unit | How categorised | Studies |
+|---|---|---|
+| Part I | Account / audit area | Church & Shefchik (2012, *AH*); Acito, Hogan & Mergenthaler (2018, *TAR*) |
+| Part I | GAAP / GAAS / ICFR | Abbott, Gunny & Zhang (2013, *AJPT*); Prasad & Webster (2022, *JAAF*); Alam, Cheng, Rickett & Skomra (2024, *JCAF*) |
+| Part I | Entity-level vs application-level controls | *IJAIS* (2018) |
+| Part I | Nature of failure, 5 types (e.g., failure to understand accounting vs insufficient substantive testing) | Constance (2025, *CAR*) |
+| Part II | Audit performance vs firm management | Buslepp, DeLisle & Victoravich (2018, *MAJ*) |
+| QC, confidential | Performance-related vs organisation-level (tone, methodology) | Aobdia (2020, *MS*) |
+
+**Step 2: "responses vary by type" is partly done.**
+
+| Response margin | Evidence by type |
+|---|---|
+| Audit fees | Alam et al. (2024): GAAS deficiencies → fees ↑, GAAP deficiencies → fees ↓ |
+| Client market share | Buslepp et al. (2018): timing differs by QC type |
+| Client relevance → fees, turnover | Acito et al. (2018) |
+| Disputing a GAAP-deficient report → market | Buslepp, Notbohm & Abbott (2018, *Advances in Accounting*) |
+| Future misstatements | Constance (2025) |
+| Tax-type QC criticism → client tax reporting | K. Drake, Goldman & Lusch (2016, *TAR*) |
+| Tax-type QC criticism → auditor-provided tax services | Ahn, Akamah & Shu (2021, *JAPP*) |
+| Firm response letters (content, tone) | Blankley, Kerr & Wiggins (2012, *RAR*); Ege, Knechel, Lamoreaux & Maksymov (2020, *AOS*) |
+| Auditors' reactions to inspection feedback (behavioural) | Johnson, Keune & Winchel (2019, *CAR*); Tegeler, Brown & Downey (2025, *TAR*) |
+
+**Where space remains (candidate positioning):**
+1. **Mechanism-based typology.** Prior schemes are regulatory or descriptive: area, standard, or a two-way
+   QC split. A typology grounded in economic mechanism (capability, effort, monitoring, incentives,
+   objectivity) yields *discriminant* predictions: type k moves response margin k and not the others.
+   Prior papers test one outcome against one split.
+2. **Firm-side real responses, especially labour** (hiring, experience mix, partner turnover, EQR/partner
+   reassignment via Form AP). None of the studies above uses labour outcomes by deficiency type. This
+   links the idea to Ideas A/B and to a data advantage (Revelio).
+3. **Response letters × deficiency type.** Tone and disagreement are studied, but apparently not by
+   deficiency type. Ege et al. (2020) report that firms stopped publicly disagreeing after the early
+   years, so post-2010 variation may be thin.
+
+**Main design risks:**
+- Part I deficiencies are almost all "execution" failures that differ by area. Mechanism variation lives
+  mainly in Part II (small, selected on non-remediation) and in Part I.B/I.C (independence).
+- Deficiency mix reflects risk-based inspection selection (Aobdia, Li, Ramesh & Shen 2025), firm size,
+  and client industry. Identification needs within-firm variation over time.
+- Responses start before public release (Buslepp et al. 2018), so event timing is fuzzy.
